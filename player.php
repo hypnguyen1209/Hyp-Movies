@@ -1,4 +1,18 @@
 <?php
+ function get_user_ip() {
+        if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER) && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            if (strpos($_SERVER['HTTP_X_FORWARDED_FOR'], ',') > 0) {
+                $addr = explode(",",$_SERVER['HTTP_X_FORWARDED_FOR']);
+                return trim($addr[0]);
+            } else {
+                return $_SERVER['HTTP_X_FORWARDED_FOR'];
+            }
+        } else {
+            return $_SERVER['REMOTE_ADDR'];
+        }
+    }
+     
+$ip = get_user_ip();
 $ID = $_GET['id'];
 function CURL($URLs) {
     $ch = curl_init();
@@ -8,7 +22,8 @@ function CURL($URLs) {
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT => 0,
         CURLOPT_SSL_VERIFYPEER => false,
-        CURLOPT_SSL_VERIFYHOST => false
+        CURLOPT_SSL_VERIFYHOST => false,
+        CURLOPT_HTTPHEADER => ['x-forwarded-for: '.$ip]
     ));
     $Reponse = curl_exec($ch);
     curl_close($ch);
