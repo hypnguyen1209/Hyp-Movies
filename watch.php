@@ -121,58 +121,7 @@
     'name': 'Hypnguyen',
     'link': 'https://www.facebook.com/hypnguyen1209'
 };
-function get_video() {
-    $.get('<?php echo $URLChecker; ?>', function (a) {
-        loadVid(a)
-    }, 'json')
-}
-function loadVid(a) {
-    var b = jwplayer('video').setup({
-        sources: [{
-            type: 'video/mp4',
-            label: 'HD',
-            file: a.file
-        }],
-        tracks: [{
-            file: eng,
-            label: 'English',
-            kind: 'captions',
-            'default': !0
-        },{
-            file: vie,
-            label: 'Vietnamese',
-            kind: 'captions'
-        }],
-        image: a.poster,
-        flashplayer: 'https://ssl.p.jwpcdn.com/player/v/8.1.1/jwplayer.flash.swf',
-        logo: {
-            file: a.logo,
-            logoBar: a.logo,
-            link: set.link
-        },
-        title: 'Hyp Movies',
-        abouttext: set.name,
-        aboutlink: set.link,
-        controls: !0,
-        autostart: !1,
-        allowfullscreen: !0,
-        fullscreen: !1,
-        preload: !0,
-        primary: 'html5',
-        width: '100%',
-        height: '100%',
-        aspectratio: '16:9',
-        displaytitle: !0,
-        playbackRateControls: [0.5, 0.75, 1, 1.25, 1.5, 2],
-        sharing: {
-            link: '<?php echo 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>'
-        }
-    });
-    b.addButton('//icons.jwplayer.com/icons/white/download.svg', 'Download Video', function () {
-        window.location.href = b.getPlaylistItem()['file']
-    }, 'download')
-}
-    </script>
+function get_video(){$.get('<?php echo $URLChecker; ?>',function(l){loadVid(l)},"json")}function loadVid(l){var e=jwplayer("video").setup({sources:[{type:"video/mp4",label:"HD",file:l.file}],tracks:[{file:eng,label:"English",kind:"captions",default:!0},{file:vie,label:"Vietnamese",kind:"captions"}],image:l.poster,flashplayer:"https://ssl.p.jwpcdn.com/player/v/8.1.1/jwplayer.flash.swf",logo:{file:l.logo,logoBar:l.logo,link:set.link},title:"Hyp Movies",abouttext:set.name,aboutlink:set.link,controls:!0,autostart:!1,allowfullscreen:!0,fullscreen:!1,preload:!0,primary:"html5",width:"100%",height:"100%",aspectratio:"16:9",displaytitle:!0,playbackRateControls:[.5,.75,1,1.25,1.5,2],sharing:{link:'<?php echo 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>'}});e.addButton("//icons.jwplayer.com/icons/white/download.svg","Download Video",function(){window.location.href=e.getPlaylistItem().file},"download")}    </script>
 </body>
 <!--   Core JS Files   -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script> 
